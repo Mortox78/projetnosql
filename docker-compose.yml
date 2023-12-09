@@ -1,0 +1,23 @@
+version: "3"
+
+services:
+  django:
+    build:
+      context: ./projetnosql
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres
+      - mongodb
+
+  postgres:
+    build:
+      context: ./postgres
+    volumes:
+      - ./postgres_data:/var/lib/postgresql/data
+
+  mongodb:
+    build:
+      context: ./mongodb
+    volumes:
+      - ./mongodb_data:/data/db
