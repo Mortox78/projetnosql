@@ -75,10 +75,27 @@ WSGI_APPLICATION = 'projetnosql.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'mydb',
+        'USER': 'myuser',
+        'PASSWORD': 'mypassword',
+        'HOST': 'postgres',
+        'PORT': '5432',
+    },
+    'mongodb': {
+        'ENGINE': 'djongo',
+        'NAME': 'mydb',
+        'ENFORCE_SCHEMA': False,
+        'CLIENT': {
+            'host': 'mongodb',
+            'port': 27017,
+            'username': 'admin',
+            'password': 'mypassword',
+            'authSource': 'admin',
+        }
     }
 }
+
 
 
 # Password validation
