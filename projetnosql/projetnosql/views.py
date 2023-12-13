@@ -7,15 +7,22 @@ def add_book(request):
     if request.method == 'POST':
         form = BookForm(request.POST)
         if form.is_valid():
-            form.save()
+            newBook = Book()
+            newBook.title = form.cleaned_data.get('title')
+            newBook.author = form.cleaned_data.get('author')
+            newBook.content = form.cleaned_data.get('content')
+            newBook.save(using='default')
+            newBook.save(using='mongodb')
+            # form.save()
             return redirect('book_list')
     else:
         form = BookForm()
     return render(request, 'add_book.html', {'form': form})
 
 def book_list(request):
-    books = Book.objects.all()
-    return render(request, 'book_list.html', {'books': books})
+    booksPSQL = Book.objects.using('default')
+    booksMongo = Book.objects.using('mongodb')
+    return render(request, 'book_list.html', {'booksPSQL': booksPSQL, 'booksMongo': booksMongo})
 
 def index(request):
 

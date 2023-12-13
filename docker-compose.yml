@@ -9,11 +9,12 @@ services:
     depends_on:
       - postgres
       - mongodb
-    command: bash -c "python3 manage.py makemigrations && python3 manage.py migrate && python3 manage.py runserver"
 
   postgres:
     build:
       context: ./postgres
+    ports:
+      - "5432:5432"
     volumes:
       - ./postgres_data:/var/lib/postgresql/data
 
