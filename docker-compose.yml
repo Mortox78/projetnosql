@@ -9,6 +9,7 @@ services:
     depends_on:
       - postgres
       - mongodb
+    command: bash -c "python3 manage.py makemigrations && python3 manage.py migrate && python3 manage.py runserver"
 
   postgres:
     build:

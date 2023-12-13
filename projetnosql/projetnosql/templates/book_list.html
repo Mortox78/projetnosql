@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Liste des Livres</title>
+</head>
+<body>
+
+<h2>Liste des Livres</h2>
+<ul>
+    {% for book in books %}
+        <li>{{ book.title }} - {{ book.author }} - {{ book.content }}</li>
+    {% endfor %}
+</ul>
+
+</body>
+</html>
